@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "seen_job_ids": ["1000000001"],
+  "applications": [
+    {
+      "job_id": "1000000001",
+      "title": "Sample job",
+      "url": "https://www.upwork.com/jobs/~02example",
+      "proposed_at": "2026-10-08T12:00:00Z",
+      "source": "mcp",
+      "mcp_status": "Accepted",
+      "mcp_status_label": "Submitted",
+      "local_note": "",
+      "connects_cost": 8,
+      "boost_connects": null,
+      "outcome_note": ""
+    }
+  ],
+  "connects_log": [
+    {
+      "at": "2026-10-08T12:00:00Z",
+      "job_id": "1000000001",
+      "connects": 8,
+      "kind": "proposal",
+      "source": "mcp"
+    }
+  ]
+}

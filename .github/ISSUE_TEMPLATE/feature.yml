@@ -1,0 +1,19 @@
+name: Feature
+description: A freelancer workflow the official MCP can support
+title: "[Feature] "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: job
+    attributes:
+      label: The job to be done
+    validations:
+      required: true
+  - type: input
+    id: tool
+    attributes:
+      label: Official MCP tool that supports it
+      description: Leave blank if you are not sure. Do not propose cookie login or browser scraping.
+    validations:
+      required: false

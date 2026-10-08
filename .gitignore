@@ -1,0 +1,11 @@
+profile.md
+preferences.md
+.upwork-jobpilot/
+*.local.md
+.DS_Store
+__pycache__/
+.pytest_cache/
+.venv/
+*.pyc
+.secrets
+.env

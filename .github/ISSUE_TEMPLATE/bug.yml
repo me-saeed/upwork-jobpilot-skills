@@ -1,0 +1,19 @@
+name: Bug
+description: A skill gave unsafe or incorrect guidance
+title: "[Bug] "
+labels:
+  - bug
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: Include the skill name. Do not paste Upwork tokens, cookies, or org ids.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What should have happened
+    validations:
+      required: true

@@ -1,0 +1,72 @@
+[
+  {
+    "name": "missing client still uses the other weights",
+    "dimensions": {
+      "skills": 90,
+      "portfolio": 80,
+      "budget": 70,
+      "clarity": 60,
+      "client": null,
+      "competition": 50
+    },
+    "overall": 75,
+    "band": "Strong Fit",
+    "weights_used": 90
+  },
+  {
+    "name": "all dimensions at the review boundary",
+    "dimensions": {
+      "skills": 50,
+      "portfolio": 50,
+      "budget": 50,
+      "clarity": 50,
+      "client": 50,
+      "competition": 50
+    },
+    "overall": 50,
+    "band": "Worth Reviewing",
+    "weights_used": 100
+  },
+  {
+    "name": "just below strong fit",
+    "dimensions": {
+      "skills": 74,
+      "portfolio": 74,
+      "budget": 74,
+      "clarity": 74,
+      "client": 74,
+      "competition": 74
+    },
+    "overall": 74,
+    "band": "Worth Reviewing",
+    "weights_used": 100
+  },
+  {
+    "name": "uniform low scores",
+    "dimensions": {
+      "skills": 40,
+      "portfolio": 40,
+      "budget": 40,
+      "clarity": 40,
+      "client": 40,
+      "competition": 40
+    },
+    "overall": 40,
+    "band": "Low Fit",
+    "weights_used": 100
+  },
+  {
+    "name": "no usable dimensions",
+    "dimensions": {
+      "skills": null,
+      "portfolio": null,
+      "budget": null,
+      "clarity": null,
+      "client": null,
+      "competition": null
+    },
+    "overall": null,
+    "band": null,
+    "weights_used": 0
+  }
+]

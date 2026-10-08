@@ -5,7 +5,7 @@ license: MIT
 compatibility: Requires the official Upwork MCP at https://mcp.upwork.com/mcp and an authenticated TALENT or FL_AGENCY account. Search is read-only.
 metadata:
   author: upwork-jobpilot-skills
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Find Upwork jobs
@@ -41,7 +41,7 @@ For FL_AGENCY, do not call `get_profile`. Say that personal profile fields are u
 3. Apply preference filters the tool actually supports: `job_type`, `budget_min` for a fixed floor, `rate_min` for an hourly floor, `verified_payment_only`, `duration` only together with `job_type=hourly`. Relay any `filters_ignored` or `filters_rejected`. On an empty page, read `empty_reason` when present and say what it means. Otherwise say nothing matched these filters.
 4. Drop rows with `applied` true. Drop ids already in local history. Keep rows that lack a field. Mark the field unknown.
 5. Order the remaining rows: in both the profile feed and the keyword feed first, then profile feed, then keyword feed. Within a group, prefer a verified payment method when that flag is present, then a newer `created_date` when it is present. Do not reorder by a hire count you have not fetched.
-6. Call `find_jobs` `get` for the top three only, unless the user asked to inspect more. Use `client_record` for hires and spend. Do not describe `total_posted_jobs` as hires. Use `activityStat` for invites, interviews, and hires on this posting. Use `connects_cost` from `get`, or `connect_price` from `smart_search`. If neither was returned, say the Connects cost is unknown.
+6. Call `find_jobs` `get` for the top three only, unless the user asked to inspect more. On `client_record`, hires are `jobs_with_hires` and spend is `spend_total`. A `smart_search` row may include `client.total_hires`. Cite that only when the field is present. Do not describe `total_posted_jobs` as hires. Use `activityStat.jobActivity` for invites, interviews, and hires on this posting (`totalInvitedToInterview`, `totalHired`, `totalOffered`). Use `connects_cost` from `get`, or `connect_price` from `smart_search` when that field is actually on the row. If neither was returned, say the Connects cost is unknown. `applied` is not on every search row. Missing means unknown, not "this person has not applied", until `get` returns `applied`.
 7. If `pageInfo.hasNextPage` or `hasMore` is true, offer the next page. Repeat the same filters and mode with the returned cursor. Do not change filters between pages.
 
 Save a job only when the user asks. Call `get_tool_help` for `save_job` and wait for a yes before any write.

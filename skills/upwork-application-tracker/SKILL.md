@@ -5,7 +5,7 @@ license: MIT
 compatibility: Requires the official Upwork MCP at https://mcp.upwork.com/mcp and an authenticated TALENT or FL_AGENCY account. Tracking is read-only unless the user later asks another skill to submit.
 metadata:
   author: upwork-jobpilot-skills
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Track Upwork applications

@@ -10,7 +10,7 @@ Upwork JobPilot Skills is a small MIT repo of Agent Skills. They call the offici
 
 There is no hosted service and no extra account. You connect Upwork's server yourself, then:
 
-npx skills add YOUR_GITHUB_USERNAME/upwork-jobpilot-skills
+npx skills add saeed-pallivivo/upwork-jobpilot-skills
 
 The fit score renormalizes when client or budget fields are missing, so a blank is not stored as a zero. Tests are schema and instruction checks. They do not spend Connects.
 

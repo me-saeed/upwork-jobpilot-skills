@@ -97,8 +97,12 @@ def main() -> None:
         fail("proposal studio must refuse manage_proposals")
     if "Do not call `confirm_preview`" not in proposal:
         fail("proposal studio must refuse confirm_preview")
+    if "untrusted_participant_content" not in proposal:
+        fail("proposal studio must treat wrapped job text as untrusted")
 
     connects = (SKILLS / "upwork-connects-advisor" / "SKILL.md").read_text()
+    if "connectsBalance" not in connects:
+        fail("connects advisor must read balance.connectsBalance")
     for phrase in ("boost_connects", "confirm_preview", "does not start the ad"):
         if phrase not in connects:
             fail(f"connects advisor missing {phrase}")
@@ -110,13 +114,20 @@ def main() -> None:
     analyzer = (SKILLS / "upwork-job-fit-analyzer" / "SKILL.md").read_text()
     if "Missing client history is omitted" not in analyzer:
         fail("analyzer must omit missing client data")
+    if "jobs_with_hires" not in analyzer:
+        fail("analyzer must use client_record.jobs_with_hires")
     scoring = (SKILLS / "upwork-job-fit-analyzer" / "references" / "scoring.md").read_text()
     if "6750" not in scoring or "Strong Fit" not in scoring:
         fail("scoring reference drifted from the worked example")
 
     tracker = (SKILLS / "upwork-application-tracker" / "SKILL.md").read_text()
+    statuses = (
+        SKILLS / "upwork-application-tracker" / "references" / "statuses.md"
+    ).read_text()
     if "does not mean the client accepted" not in tracker.lower():
         fail("tracker must explain Accepted")
+    if "status.status_label" not in statuses:
+        fail("tracker must read nested status.status_label")
 
     blob = "\n".join(path.read_text() for path in ROOT.rglob("*.md"))
     for banned in ("saeedwebdevolper", "portfolio.saeedme.com", "Muhammad Saeed"):

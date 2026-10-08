@@ -2,6 +2,8 @@
 
 `list_freelancer_proposals` `list` takes one `status` per call. The default is `Accepted`. Pass the status you mean.
 
+On each proposal the live payload nests the result: read `status.status` and `status.status_label`. Do not assume those keys sit on the proposal root. A checked response used `status_label` "Submitted" for `status` `Accepted`.
+
 | status | What to tell the user |
 |---|---|
 | Pending | Still processing. Not proof the proposal is live until a later read shows it submitted. |

@@ -26,7 +26,7 @@ The server is self-describing. Skills call `get_tool_help` before relying on a p
 | One job | `find_jobs` `get` | Accepts numeric id, `~02…` ciphertext, or a full job URL. This is where `connects_cost`, `connects_balance`, `can_apply`, `applied`, `client_record` (hires, spend, hire rate), `activityStat`, `preferred_qualifications`, and `client_feedback` are read. |
 | Already applied | `applied` on search, smart_search, and get | `true` means this account already has a proposal. Do not recommend applying again. |
 | Proposal counts | Row field | Exact `proposal_count` depends on plan. Other accounts get `proposals_tier`. If the plan cannot be verified, the server returns the safer tier. Never turn a missing count into 0. |
-| Client hires on a search row | Not on the row | Search `client.total_posted_jobs` is jobs posted, not hires. Hires come from `get` → `client_record`. |
+| Client hires on a search row | Sometimes | A `search` row's `client.total_posted_jobs` is jobs posted, not hires. A `smart_search` row may include `client.total_hires`. Cite `total_hires` only when it is present. `get` → `client_record.jobs_with_hires` is the client's hire count. `jobs_posted` is not that count. |
 | Client rating | Present | Score freelancers gave the client. Relay `client_rating_basis` when the payload includes it. |
 | Connects to apply on a search row | Not on `search` | `smart_search` can include `connect_price`. `get` includes `connects_cost`. Say unknown when the field was not returned. |
 | Featured jobs | `featured` | Say "featured". Do not say "premium". |
@@ -39,7 +39,7 @@ Overlap: official `write-proposal` can search, then immediately draft. JobPilot 
 |---|---|---|
 | Own freelancer profile | `get_profile` `get` with no `profile_key` | TALENT only. Skills, overview, work history, promotions. Agency accounts do not have this tool; use `get_tool_help` on `get_agency` before reading agency evidence. |
 | Portfolio and certificates | `get_profile` `list_highlights` | TALENT. Returns ids for later `portfolio_project_ids` and `certificate_ids`. |
-| Connects wallet | `get_profile` `connects_balance` for TALENT. Agency: `get_freelancer_financials` `connects_balance` after `get_tool_help`. | `balance` is the wallet. `product_credits` are not part of that balance. |
+| Connects wallet | `get_profile` `connects_balance` for TALENT. Agency: `get_freelancer_financials` `connects_balance` after `get_tool_help`. | The wallet number is `balance.connectsBalance`. `product_credits` is a separate map and is not part of that number. |
 | Local private profile | Not an MCP feature | Optional `profile.md` and `preferences.md` on the user's machine. See `templates/`. |
 
 `update_profile` can preview title, overview, skills, video, availability capacity, employment, education, languages, and other experience. It has no hourly-rate action and no portfolio-project action. Those edits stay on upwork.com. v1 does not ship a profile-writing skill.
@@ -48,7 +48,7 @@ Overlap: official `write-proposal` can search, then immediately draft. JobPilot 
 
 | Need | MCP support | Spends Connects? | Confirmation |
 |---|---|---|---|
-| List proposals | `list_freelancer_proposals` `list` | No | None. Default `status` is `Accepted`, which means submitted and validated, not "the client hired you". Use `status_label`. Page with `cursor` while `pageInfo.hasNextPage` is true. Status enum: Accepted, Declined, Withdrawn, Offered, Activated, Archived, Hired, Pending. |
+| List proposals | `list_freelancer_proposals` `list` | No | None. Default `status` is `Accepted`, which means submitted and validated, not "the client hired you". The payload nests this as `status.status` and `status.status_label` (a checked row used the label "Submitted"). Page with `cursor` while `hasNextPage` or `hasMore` is true. Status enum: Accepted, Declined, Withdrawn, Offered, Activated, Archived, Hired, Pending. |
 | One proposal | `list_freelancer_proposals` `get` | No | May include `insights`. If `insights_available` is false, relay `insights_note` and do not estimate. |
 | Invitations | `list_freelancer_proposals` `invitations` | No | If an invitation exists, later submission uses `accept_invitation`, not `create`. |
 | Open a draft | `manage_proposals` `create` | Not yet. Preview only. | Explicit yes before this call. Required: numeric `job_reference` (not the ciphertext), `cover_letter` (max 5000), `charged_amount` number. |

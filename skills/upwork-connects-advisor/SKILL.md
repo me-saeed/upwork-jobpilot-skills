@@ -5,7 +5,7 @@ license: MIT
 compatibility: Requires the official Upwork MCP at https://mcp.upwork.com/mcp and an authenticated TALENT or FL_AGENCY account. Reads are free. Proposal confirm spends Connects.
 metadata:
   author: upwork-jobpilot-skills
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Advise on Connects
@@ -25,7 +25,7 @@ Help the user choose a spend, then submit only when they say so. Required Connec
 
 Reads:
 
-- TALENT: `get_profile` action `connects_balance`. `balance` is the wallet. Report `product_credits` separately. They are not part of `balance`.
+- TALENT: `get_profile` action `connects_balance`. The wallet is `balance.connectsBalance`. When present, `connectsBalanceFree`, `connectsBalancePaid`, and `rolloverBalance` explain that number. `product_credits` is a map of product name to credits. Report it separately and never add it to the wallet.
 - FL_AGENCY: `get_tool_help` for `get_freelancer_financials`, then `connects_balance`. Do not call `get_profile`.
 - `find_jobs` `get` for `connects_cost`, `can_apply`, and `applied` when the user names specific jobs.
 - `boost_profile` action `get_status` when they ask about the Availability Badge or a profile-boost ad.

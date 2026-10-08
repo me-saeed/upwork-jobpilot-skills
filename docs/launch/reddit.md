@@ -12,7 +12,7 @@ This is not an Upwork product. The official plugin is still the one that posts j
 
 Install, after you publish the repo:
 
-npx skills add YOUR_GITHUB_USERNAME/upwork-jobpilot-skills
+npx skills add saeed-pallivivo/upwork-jobpilot-skills
 
 MCP setup is separate: https://www.upwork.com/ai/mcp
 

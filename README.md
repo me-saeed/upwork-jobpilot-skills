@@ -5,10 +5,10 @@
 Five Agent Skills for freelancers who already use the official Upwork MCP. They search, score, draft, and submit through that connector. Installing them does not log you into Upwork.
 
 ```bash
-npx skills add YOUR_GITHUB_USERNAME/upwork-jobpilot-skills
+npx skills add saeed-pallivivo/upwork-jobpilot-skills
 ```
 
-Replace `YOUR_GITHUB_USERNAME` with the GitHub account that publishes this repository. The installer asks which skills and which agents to configure. Cursor, Claude Code, and Codex are the hosts this repository documents. Other Agent Skills hosts can use the same `skills/` folders.
+The installer asks which skills and which agents to configure. Cursor, Claude Code, and Codex are the hosts this repository documents. Other Agent Skills hosts can use the same `skills/` folders.
 
 This project is an independent open-source effort. It is not affiliated with, endorsed by, or maintained by Upwork.
 

@@ -14,6 +14,6 @@ The proposal skill cannot press submit. Profile boost ads still start on upwork.
 
 It is an independent project, not an Upwork product.
 
-npx skills add saeed-pallivivo/upwork-jobpilot-skills
+npx skills add me-saeed/upwork-jobpilot-skills
 
 MCP login stays the official one: https://www.upwork.com/ai/mcp
